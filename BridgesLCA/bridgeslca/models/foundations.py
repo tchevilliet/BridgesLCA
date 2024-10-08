@@ -5,29 +5,31 @@ Created on Tue Oct  8 17:50:06 2024
 
 @author: thibault.chevilliet
 """
-#%%
+
 from datetime import date
 from pydantic import BaseModel
 from typing import Optional, NamedTuple
 import pandas as pd
-#import sentier_data_tools as sdt
 
-#%%
+# import sentier_data_tools as sdt
+
 
 class IRI(BaseModel):
     # Can look up info
     ref: str
 
+
 class SimpleDataRange(NamedTuple):
-    start : date
-    end : date
-        
+    start: date
+    end: date
+
+
 class Demand(BaseModel):
     product_iri: IRI
     properties: Optional[list]
     amount: float
     spatial_context: IRI = IRI(ref="https://sws.geonames.org/6295630/")
-    temporal_range: SimpleDataRange # TBD
+    temporal_range: SimpleDataRange  # TBD
 
 
 class RunConfig(BaseModel):
@@ -37,10 +39,30 @@ class RunConfig(BaseModel):
 
 class SentierModel:
     def __init__(self, demand: Demand, run_config: RunConfig):
-        pass
+        self.demand = demand
 
-    def get_model_data(self) -> list[pd.DataFrame]:  # Duck typing also fine
-        pass
+    def get_model_data(
+        self, demand: Demand
+    ) -> list[pd.DataFrame]:  # Duck typing also fine
+        if self.demand.product_iri == IRI(
+            ref="http://data.europa.eu/xsp/cn2024/911440000080"
+        ):
+            inputs_df = pd.DataFrame({"Cement": [1], "Steel": [10]})
+
+        elif self.demand.product_iri == IRI(
+            ref="http://data.europa.eu/xsp/cn2024/cement"
+        ):
+            inputs_df = pd.DataFrame({"limestone": [10], "water": [5]})
+
+        elif self.demand.product_iri == IRI(
+            ref="http://data.europa.eu/xsp/cn2024/steel"
+        ):
+            inputs_df = pd.DataFrame({"iron ore": [1], "land": [4]})
+
+        else:
+            print(" no DF")
+
+        return inputs_df
 
     def prepare(self) -> None:
         self.get_model_data()
@@ -48,16 +70,36 @@ class SentierModel:
         self.resample()
 
     def run(self) -> list[Demand]:
-        pass
-    
+
+        return self.demand.amount * self.get_model_data(self.demand)
 
 
-#%%
+list_uri = {
+    "Cement": "http://data.europa.eu/xsp/cn2024/cement",
+    "Steel": "http://data.europa.eu/xsp/cn2024/steel",
+}
+D = Demand(
+    product_iri=IRI(ref="http://data.europa.eu/xsp/cn2024/911440000080"),
+    properties=None,
+    amount=2.0,
+    temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
+)
+m = SentierModel(demand=D, run_config=RunConfig())
+m.run()
 
-D = Demand(product_iri=IRI(ref='http://data.europa.eu/xsp/cn2024/911440000080'),
-           properties = None,
-           amount = 1.0,
-           temporal_range = (date(2000,1,1),date(2010,1,1)))
-m = SentierModel(demand=D,run_config=RunConfig())
+for col in m.run():
 
-df1 = pd.DataFrame({"Cement":[1], "Steel":[10]})
+    new_D = Demand(
+        product_iri=IRI(ref=list_uri[col]),
+        properties=None,
+        amount=m.run().loc[0, col],
+        temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
+    )
+    m_new = SentierModel(demand=new_D, run_config=RunConfig())
+    print(m_new.run())
+
+
+m.get_model_data()
+foundation = pd.DataFrame({"Cement": [1], "Steel": [10]})
+
+new_D.product_iri
