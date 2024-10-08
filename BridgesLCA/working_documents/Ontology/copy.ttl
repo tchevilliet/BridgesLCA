@@ -1,0 +1,522 @@
+@prefix brcomp: <https://w3id.org/brcomp#> .
+@prefix brot: <https://w3id.org/brot#> .
+@prefix dcterms1: <http://purl.org/dc/terms> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/brcomp> a owl:Ontology ;
+    dcterms1:creator [ a foaf:Person ;
+            foaf:name "Al-Hakam Hamdan" ],
+        [ a foaf:Person ;
+            foaf:name "Taras Kozak" ] ;
+    dcterms1:description "Ontology for bridge components and their properties"@en ;
+    dcterms1:license "https://creativecommons.org/licenses/by/1.0" ;
+    dcterms1:modified "23th May 2019" ;
+    dcterms1:title "Bridge Components"@en ;
+    vann:preferredNamespacePrefix "brcomp" ;
+    vann:preferredNamespaceUri "https://w3id.org/brcomp#" ;
+    owl:versionIRI <https://w3id.org/brcomp/0.1> .
+
+brcomp:Abutment a owl:Class ;
+    rdfs:label "Widerlagerelement"@de,
+        "Abutment component"@en ;
+    rdfs:comment "Structural component that creates the transition between the bridge structure and the earth dam."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:AbutmentBenching a owl:Class ;
+    rdfs:label "Auflagerbank eines Widerlagers"@de,
+        "Benching of an abutment"@en ;
+    rdfs:comment "Part of a Abutment on which a Bearing is installed."@en ;
+    rdfs:subClassOf brcomp:AbutmentComponent .
+
+brcomp:AbutmentChamberWall a owl:Class ;
+    rdfs:label "Kammerwand eines Widerlagers"@de,
+        "Chamber wall of an abutment"@en ;
+    rdfs:comment "Front wall of Abutment."@en ;
+    rdfs:subClassOf brcomp:AbutmentComponent .
+
+brcomp:AbutmentFooting a owl:Class ;
+    rdfs:label "Fundamentplatte eines Widerlagers"@de ;
+    rdfs:comment "Abutment footing"@en,
+        "Footing / foundation of Abutment."@en ;
+    rdfs:subClassOf brcomp:AbutmentComponent .
+
+brcomp:AbutmentWingWall a owl:Class ;
+    rdfs:label "Fluegelwand eines Widerlagers"@de,
+        "Wing wall of an abutment"@en ;
+    rdfs:comment "Side wall of Abutment."@en ;
+    rdfs:subClassOf brcomp:AbutmentComponent .
+
+brcomp:Arch a owl:Class ;
+    rdfs:label "Brückenbogen"@de,
+        "Arch"@en ;
+    rdfs:comment "No clearly visible separation between the superstructure and the substructure . The arch of the bridge loads the transom diagonally outwards. Both vertical and horizontal forces are transmitted into it."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent,
+        brcomp:SuperStructureComponent .
+
+brcomp:BearingSeat a owl:Class ;
+    rdfs:label "Lagersockel"@de,
+        "Bearing seat"@en ;
+    rdfs:comment "Component placed on the Bearing and serves to transfer forces over a larger area."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:BirdsProtection a owl:Class ;
+    rdfs:label "Vogelschutz"@de,
+        "Birds protection"@en ;
+    rdfs:comment "Components for protecting niches or interstices from birds."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:Cable a owl:Class ;
+    rdfs:label "Cable"@de,
+        "Seil"@de ;
+    rdfs:comment "Steel cable that is installed on a Pylon and takes tensile loads from the superstructure."@en ;
+    rdfs:subClassOf brcomp:TensionComponent .
+
+brcomp:CableAnchoringDevice a owl:Class ;
+    rdfs:label "Seilverankerung"@de,
+        "Cable anchoring device"@en ;
+    rdfs:comment "Component for anchoring steel cables of a bridge to Pylon."@en ;
+    rdfs:subClassOf brcomp:SuperStructureComponent .
+
+brcomp:Cap a owl:Class ;
+    rdfs:label "Kappe"@de,
+        "Cap"@en ;
+    rdfs:comment """Non-traveled edge formation of reinforced concrete or prestressed concrete bridges, which can also be formed as kerbs.
+
+ caps have to fulfil various functions. In addition to protecting the load-bearing bridge structure, they are used for anchoring passive protective devices and as bicycle and/or pedestrian paths. Due to their exposed position, they are exposed to particularly strong attacks, e.g. frost-thaw salt attacks. In addition, there are dynamic loads caused by traffic on the bridges. Even if the bridge caps undergo optical changes as a result of wear, load or weathering during the planned service life, concrete bridge caps are safe and durable if constructive and technical rules are observed."""@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:ConcreteStayTensionComponent a owl:Class ;
+    rdfs:label "Zugglieder aus Stahlbeton"@de,
+        "Tension component as a concrete stay"@en ;
+    rdfs:comment "Concrete components subjected to tensile stress."@en ;
+    rdfs:subClassOf brcomp:TensionComponent .
+
+brcomp:ConstructionJoint a owl:Class ;
+    rdfs:label "Arbeitsfuge"@de,
+        "Construction joint"@en ;
+    rdfs:comment "Separation lines within components. They occur, for example, in concrete construction as set-down joints between successive concreting sections. Concreting in several stages is often unavoidable due to the construction process. The aim is to create the best possible bond between the adjacent concreting sections. Since the reinforcement runs through the construction joints, a traditional shuttering of the concreting section with wood would be costly. Today, expanded metal is mostly used for this purpose, which can be easily cut and bent to size and guarantees a certain degree of interlocking of the concreting sections. If, for example, a straight line of joints is desired for aesthetic reasons, formwork panels can be used in combination with a reverse bending connection for the reinforcing irons, which allow subsequent interlocking by bending up the reinforcing bars as the concreting process continues. In engineering structures such as bridges, screw connections are used to connect the reinforcement steel over construction joints due to the higher loads."@en ;
+    rdfs:subClassOf brot:Joint .
+
+brcomp:CouplingJoint a owl:Class ;
+    rdfs:label "Koppelfuge"@de,
+        "Coupling joint"@en ;
+    rdfs:comment "Necessary in prestressed concrete construction if the component has to be constructed in several sections, e.g. in bridge construction. The individual components are coupled to each other at the coupling joints and the tendons are connected to each other, e.g. bolted, depending on the prestressing method"@en ;
+    rdfs:subClassOf brot:Joint .
+
+brcomp:Drainage a owl:Class ;
+    rdfs:label "Entwaesserung"@de,
+        "Drainage"@en ;
+    rdfs:comment "Technical systems that counteract waterlogging on the bridge construction."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:DrilledPile a owl:Class ;
+    rdfs:label "Bohrpfahl"@de,
+        "Drilled pile"@en ;
+    rdfs:comment "Pile that is drilled to the underground by utilizing specifc drilling systems and machines."@en ;
+    rdfs:subClassOf brcomp:Pile .
+
+brcomp:ElastomericBearings a owl:Class ;
+    rdfs:label "Verformungslager"@de,
+        "Elastomeric bearings"@en ;
+    rdfs:comment "Bearings made of chloroprene rubber (CR) or natural rubber (NR)."@en ;
+    rdfs:subClassOf brcomp:FixedBearingComponent .
+
+brcomp:ExpansionJoint a owl:Class ;
+    rdfs:label "Dehnungs-/Bewegungsfuge"@de,
+        "Expansion/movement joint"@en ;
+    rdfs:comment "Joint for interrupting components in order to prevent stress cracking."@en ;
+    rdfs:subClassOf brot:Joint .
+
+brcomp:Footing a owl:Class ;
+    rdfs:label "Gruendung"@de,
+        "Footing"@en ;
+    rdfs:comment "Flat foundation which rests on the ground."@en ;
+    rdfs:subClassOf brcomp:FoundationComponent .
+
+brcomp:Foundation a owl:Class ;
+    rdfs:label "Gruendungselement einer Bruecke"@de,
+        "Foundation"@en ;
+    rdfs:comment "Component for the foundation of abutments and central supports and the transfer of bridge loads."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:GirderBracing a owl:Class ;
+    rdfs:label "Aussteifung (stabfoermiges Component)"@de,
+        "Bracing (bar-shaped component)"@en ;
+    rdfs:comment "Bracing component aggregated in a Girder."@en ;
+    rdfs:subClassOf brcomp:GirderComponent .
+
+brcomp:GirderCrossGirder a owl:Class ;
+    rdfs:label "Querbalken"@de,
+        "Cross girder"@en ;
+    rdfs:comment "Querbalken des Brueckendeckquerschnitts"@de,
+        "cross girder of the bridge beam cross-section"@en ;
+    rdfs:subClassOf brcomp:GirderComponent .
+
+brcomp:GirderDeck a owl:Class ;
+    rdfs:label "Brückenplatte"@de,
+        "Deck"@en ;
+    rdfs:comment "Obere Platte des Brueckendeckquerschnitts"@de,
+        "Upper plate of the bridge beam cross-section."@en ;
+    rdfs:subClassOf brcomp:GirderComponent .
+
+brcomp:GirderDiaphragm a owl:Class ;
+    rdfs:label "Versteifungsdiaphragma"@de,
+        "Stiffening diaphgragm"@en ;
+    rdfs:comment "Plate-shaped component used for bracing the Girder."@en ;
+    rdfs:subClassOf brcomp:GirderComponent .
+
+brcomp:GirderDownPlate a owl:Class ;
+    rdfs:label "Girder down plate"@en,
+        "Unterplatte"@en ;
+    rdfs:comment "Untere Platte des Brueckendeckquerschnitts"@de,
+        "Lower plate of the bridge beam cross-section"@en ;
+    rdfs:subClassOf brcomp:GirderComponent .
+
+brcomp:GirderMainGirder a owl:Class ;
+    rdfs:label "Main girder",
+        "Längsbalken"@de ;
+    rdfs:comment "Balken in der Längsrichtung des Brückendeckquerschnitts"@de,
+        "Girder component in longitudinal direction of the bridge beam cross-section"@en ;
+    rdfs:subClassOf brcomp:GirderComponent .
+
+brcomp:GirderSegment a owl:Class ;
+    rdfs:label "Brueckendecksegment"@de,
+        "Girder segment"@en ;
+    rdfs:comment "\"Brueckendeckssegment\" ist ein Segment von einem Brueckendeck, das ein Fertigteilkomponent bzw. ein Segment eines Betonierabschnitts abbildet.",
+        "\"Girder segment\" is a segment of a bridge deck, which can represent either a prefabrecated component or a section of the construction stage."@en ;
+    rdfs:subClassOf brcomp:Girder,
+        brcomp:GirderComponent .
+
+brcomp:GroundAnchoringDevice a owl:Class ;
+    rdfs:label "Erdverankerung"@de,
+        "Ground anchoring device"@en ;
+    rdfs:comment "Component that anchors the Foundation to the ground below."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:Illumination a owl:Class ;
+    rdfs:label "Beleuchtung"@de,
+        "Illumination"@en ;
+    rdfs:comment "Technical system for illuminating the bridge mainly for traffic but also could be also installed for decorative effects."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:MasticAsphalt a owl:Class ;
+    rdfs:label "Gussasphalt"@de ;
+    rdfs:comment "Mixture of fine and coarse aggregates and bitumen that can be poured and spread during installation. Therefore, no compaction work is necessary when using mastic asphalt. Mastic asphalt is used as road surface, as floor covering and for waterproofing."@en ;
+    rdfs:subClassOf brcomp:Asphalt .
+
+brcomp:NoiseBarrier a owl:Class ;
+    rdfs:label "Laermschutz"@de,
+        "Noise barrier"@en ;
+    rdfs:comment "Components and technical systems for noise abatement and part of immission control. It is intended to ensure the well-being of humans and animals with regard to noise."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:Pavement a owl:Class ;
+    rdfs:label "Gehweg"@de,
+        "Pavement"@en ;
+    rdfs:comment "Part of a road intended for pedestrian traffic."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:Pier a owl:Class ;
+    rdfs:label "Pfeiler"@de,
+        "Pier"@en ;
+    rdfs:comment "Components that support the ends of spans between these abutments."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:PinBearing a owl:Class ;
+    rdfs:label "Punktkipplager"@de ;
+    rdfs:comment "Fixed bearings that allow tilting about any axis."@en ;
+    rdfs:subClassOf brcomp:FixedBearingComponent .
+
+brcomp:PotBearings a owl:Class ;
+    rdfs:label "Topflager"@de,
+        "Pot bearings"@en ;
+    rdfs:comment "Bearing that works on the following principle: A disc made of high-quality natural rubber (elastomer) is enclosed on all sides in a steel pot. Under high pressure, the elastomer behaves like a liquid and, thanks to its deformability, can be tilted about any horizontal axis."@en ;
+    rdfs:subClassOf brcomp:FixedBearingComponent .
+
+brcomp:PrefabricatedComponent a owl:Class ;
+    rdfs:label "Fertigteil"@de,
+        "Prefabricated component"@en ;
+    rdfs:comment "Finished parts made of raw materials or semi-finished products that can be used for construction without further processing."@en ;
+    rdfs:subClassOf brot:Component .
+
+brcomp:Pylon a owl:Class ;
+    rdfs:label "Pylon"@de,
+        "Tower/pylon"@en ;
+    rdfs:comment "In bridge construction, the high towering component over which the suspension cables of suspension bridges run or to which the stay cables of cable-stayed bridges are anchored."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent,
+        brcomp:SuperStructureComponent .
+
+brcomp:Railing a owl:Class ;
+    rdfs:label "Geländer"@de,
+        "Railing"@en ;
+    rdfs:comment "Component for the fall protection of persons, which is often installed at the edge of the pavement."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:ReinforcingBar a owl:Class ;
+    rdfs:label "Bewehrungsstab"@de,
+        "Reinforcing bar"@en ;
+    rdfs:comment "Serves as reinforcement of reinforced concrete components and is cast with concrete after installation in the formwork."@en ;
+    rdfs:subClassOf brcomp:ReinforcingComponent .
+
+brcomp:ReinforcingMesh a owl:Class ;
+    rdfs:label "Bewehrungsmatte"@de,
+        "Reinforcing mesh"@en ;
+    rdfs:comment "Wire mesh made of welded bars of reinforcing steel, which are used for the reinforcement of flat reinforced concrete components."@en ;
+    rdfs:subClassOf brcomp:ReinforcingComponent .
+
+brcomp:RockerBearing a owl:Class ;
+    rdfs:label "Linienkipplager"@de,
+        "Rocker bearing"@en ;
+    rdfs:comment "Fixed bearing that only allows tilting movements around the bearing axis (one-sided tilting). They are only suitable if no significant tilting movements are to be expected across the bridge axis; i.e. for straight or slightly curved bridges with small bearing spacings as well as rigid cross members and rigid piers."@en ;
+    rdfs:subClassOf brcomp:FixedBearingComponent .
+
+brcomp:RollerBearing a owl:Class ;
+    rdfs:label "Rollenlager"@de,
+        "Roller bearing"@en ;
+    rdfs:comment "One-sided movable Bearings which allow one-sided tilting. They have a limited use like the line tilting bearings. One or more cylindrical rollers are located between the plane-parallel surfaces of the upper and lower bearing plates. In the standard version with one roller, tilting around the roller axis is possible. It is possible to transmit horizontal forces perpendicular to the direction of movement. Since the direction of movement must be perpendicular to the tilting direction, they are not suitable for inclined bridges."@en ;
+    rdfs:subClassOf brcomp:MovableBearingComponent .
+
+brcomp:SafetyKerb a owl:Class ;
+    rdfs:label "Schrammbord"@de,
+        "Safety kerb"@en ;
+    rdfs:comment "Protective device made of wood, concrete, asphalt or steel for securing road users or workplaces on or near roads."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:SlidingBearing a owl:Class ;
+    rdfs:label "Gleitlager"@de,
+        "Sliding bearings"@en ;
+    rdfs:comment "In the case of sliding bearings movable on one side, 2 guide pads with austenitic sheet steel are attached to the sliding plate. They transmit the horizontal forces via embedded PTFE to the upper bearing plate."@en ;
+    rdfs:subClassOf brcomp:MovableBearingComponent .
+
+brcomp:SphericalBearings a owl:Class ;
+    rdfs:label "Kalottenlager"@de,
+        "Spherical bearings"@en ;
+    rdfs:comment "Bearing thatenables the displacement and sliding movement in a flat and a curved sliding surface between the steel bearing plates. Spherical bearings generally act as biaxially displaceable pin bearings."@en ;
+    rdfs:subClassOf brcomp:FixedBearingComponent .
+
+brcomp:Tendon a owl:Class ;
+    rdfs:label "Spannglied"@de,
+        "Tendon"@en ;
+    rdfs:comment "Component made of high-strength steel, which is mainly used for prestressing in prestressed concrete construction."@en ;
+    rdfs:subClassOf brcomp:ReinforcingComponent .
+
+brcomp:TendonAnchoringDevice a owl:Class ;
+    rdfs:label "Spanngliedverankerung"@de,
+        "Tendon anchoring device"@en ;
+    rdfs:comment "The task of the TendonAnchoringDevice is to transfer the forces of the tendon to the concrete. This is usually done with anchor plates to which the prestressing steel transmits the forces through wedge anchoring, upset heads or nuts."@en ;
+    rdfs:subClassOf brcomp:ReinforcingComponent .
+
+brcomp:TrafficBarrier a owl:Class ;
+    rdfs:label "Leiteinrichtung"@de,
+        "Traffic barrier"@en ;
+    rdfs:comment "Road components to clarify traffic guidance for road users."@en ;
+    rdfs:subClassOf brcomp:FinishingComponent .
+
+brcomp:coatingArea a owl:DatatypeProperty ;
+    rdfs:label "Abdichtungsfläche"@de,
+        "coating area"@en ;
+    rdfs:comment """Gibt die Fläche des abgedichteten Bereichs an.
+
+Einheit in [m²]"""@de,
+        """Specifies the area of the used coating on a component.
+
+Unit in [m²]."""@en ;
+    rdfs:domain brot:Coating .
+
+brcomp:coatingThickness a owl:DatatypeProperty ;
+    rdfs:label "Abdichtungsdicke"@de,
+        "coating thickness"@en ;
+    rdfs:comment """Dicke (Dichtungsschicht + Schutzschicht)
+
+Einheit in [cm]"""@de,
+        """Thickness (sealing layer + protective layer)
+
+Unit in [cm]"""@en ;
+    rdfs:domain brot:Coating .
+
+brcomp:concreteCover a owl:DatatypeProperty ;
+    rdfs:label "Betondeckung"@de,
+        "concrete cover"@en ;
+    rdfs:comment "Distance between the concrete surface and the outer edge of a reinforcing steel coated with concrete of a Component."@en .
+
+brcomp:criticalTempSummer a owl:DatatypeProperty ;
+    rdfs:label "Kritische Temperatur Sommer"@de,
+        "Citical Temperature Summer"@en ;
+    rdfs:comment """Gibt die Kritische Temperatur für Lagerbauteile im Sommer an.
+
+Einheit in [Celsius]"""@de,
+        """Specifies the critical temperature for a Bearing in summer.
+
+Unit in [Celsius]."""@en ;
+    rdfs:domain brcomp:Bearing .
+
+brcomp:criticalTempWinter a owl:DatatypeProperty ;
+    rdfs:label "Kritische Temperatur Winter"@de,
+        "Citical Temperature Winter"@en ;
+    rdfs:comment """Gibt die Kritische Temperatur für Lagerbauteile im Winter an.
+
+Einheit in [Celsius]"""@de,
+        """Specifies the critical temperature for a Bearing in winter.
+
+Unit in [Celsius]."""@en ;
+    rdfs:domain brcomp:Bearing .
+
+brcomp:diameter a owl:DatatypeProperty ;
+    rdfs:label "Durchmesser"@de,
+        "diameter"@en ;
+    rdfs:comment """Durchmesser für runde Bauobjekte wie z.B. Pfähle, Pfeiler, etc.
+
+Einheit in [m]."""@de,
+        """Diameter for round Component such as piles, pillars, etc.
+
+Unit in [m]."""@en ;
+    rdfs:domain brot:Component .
+
+brcomp:height a owl:DatatypeProperty ;
+    rdfs:label "Höhe"@de,
+        "height"@en ;
+    rdfs:comment """Gibt die Höhe eines Brückenbauteils an.
+
+Einheit in [m]."""@de,
+        """Specifies the height of a bridge component.
+
+Unit in [m]."""@en ;
+    rdfs:domain brot:Component .
+
+brcomp:installationYear a owl:DatatypeProperty ;
+    rdfs:label "Einbaujahr"@de,
+        "installation year"@en ;
+    rdfs:comment "Year on which the Component has been installed."@en ;
+    rdfs:domain brot:Component .
+
+brcomp:length a owl:DatatypeProperty ;
+    rdfs:label "Länge"@de,
+        "length"@en ;
+    rdfs:comment """Gibt die Länge eines Brückenbauteils an.
+
+Einheit in [m]"""@de,
+        """Specifies the length of a Component.
+
+Unit in [m]"""@en ;
+    rdfs:domain brot:Component .
+
+brcomp:seaWaterContact a owl:DatatypeProperty ;
+    rdfs:label "sea water contact"@en ;
+    rdfs:comment "Defines whether a Component has contact with sea water"@en ;
+    rdfs:domain brot:Component ;
+    rdfs:range xsd:boolean .
+
+brcomp:tendonDirection a owl:DatatypeProperty ;
+    rdfs:label "Vorspannungsrichtung"@de,
+        "tendon direction"@en ;
+    rdfs:comment "Gibt die Vorspannungsrichtung an."@de,
+        "Defines the tendon direction."@en ;
+    rdfs:domain brot:Tendon .
+
+brcomp:tendonInternal a owl:DatatypeProperty ;
+    rdfs:label "Interne Vorspannung"@de,
+        "internal tendon"@en ;
+    rdfs:comment "Gibt an, ob Vorspannung extern oder intern verbaut ist. True bei interner Vorspannung und false bei externer Vorspannung."@de,
+        "Defines whether a tendon is external or internal. True if the tendon is internal. False if the tendon is external."@en ;
+    rdfs:domain brot:Tendon ;
+    rdfs:range xsd:boolean .
+
+brcomp:type a owl:DatatypeProperty ;
+    rdfs:label "Typenbezeichnung"@de,
+        "type specification"@en ;
+    rdfs:comment "Gibt die Bezeichnung des Bauteiltyps an"@de,
+        "Specifies the name of the component type."@en ;
+    rdfs:domain brot:Component .
+
+brcomp:width a owl:DatatypeProperty ;
+    rdfs:label "Breite"@de,
+        "width"@en ;
+    rdfs:comment """Gibt die Breite eines Brückenbauteils an.
+
+Einheit in [m]."""@de,
+        """Specifies the width of a bridge member.
+
+Unit in [m]."""@en ;
+    rdfs:domain brot:Component .
+
+brcomp:Asphalt a owl:Class ;
+    rdfs:label "Asphalt"@en ;
+    rdfs:comment "Natural or technically produced mixture of the binder bitumen and aggregates used in road construction for road pavements."@en ;
+    rdfs:subClassOf brot:Coating .
+
+brcomp:Girder a owl:Class ;
+    rdfs:label "Girder"@en ;
+    rdfs:comment "Support beam used in construction. It is the main horizontal support of a structure which supports smaller beams. Girders often have an I-beam cross section composed of two load-bearing flanges separated by a stabilizing web, but may also have a box shape, Z shape, or other forms. A girder is commonly used to build bridges."@en ;
+    rdfs:subClassOf brcomp:SuperStructureComponent .
+
+brcomp:Pile a owl:Class ;
+    rdfs:label "Pfahl"@de,
+        "Pile"@en ;
+    rdfs:comment "Rod-shaped component that reaches a certain depth into the soil and is connected to the Foundation."@en ;
+    rdfs:subClassOf brcomp:FoundationComponent .
+
+brcomp:FoundationComponent a owl:Class ;
+    rdfs:label "Foundation component"@en ;
+    rdfs:comment "Component that is aggregated to the Foundation."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:MovableBearingComponent a owl:Class ;
+    rdfs:label "Bearing that transmits vertical forces and allows movements in at least one direction."@en ;
+    rdfs:subClassOf brcomp:Bearing .
+
+brcomp:TensionComponent a owl:Class ;
+    rdfs:label "Zugglied"@de,
+        "Tension component"@en ;
+    rdfs:comment "Zugglied des Ueberbaus"@de,
+        "Tension component of superstructure"@en ;
+    rdfs:subClassOf brcomp:SuperStructureComponent .
+
+brcomp:AbutmentComponent a owl:Class ;
+    rdfs:label "Abutment component"@en ;
+    rdfs:comment "Component that is aggregated in a Abutment."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:Bearing a owl:Class ;
+    rdfs:label " bearing"@en ;
+    rdfs:comment "Have the task of transferring the forces generated by their own weight, traffic loads and braking and wind forces to the substructure and abutments. A Bearing must be designed in such a way that it allows movements and rotations due to traffic, temperature differences, earthquakes, prestressing, shrinkage and creep, etc."@en ;
+    rdfs:subClassOf brcomp:SubStructureComponent .
+
+brcomp:ReinforcingComponent a owl:Class ;
+    rdfs:label "Bewehrungselement einer Bruecke"@de,
+        "Reinforcing Component"@en ;
+    rdfs:comment "Composite component that is aggregated in concrete components to increase their load-bearing capacity."@en ;
+    rdfs:subClassOf brot:Component .
+
+brcomp:FixedBearingComponent a owl:Class ;
+    rdfs:comment "Fixed bearing"@en,
+        "Transmits vertical and horizontal forces from any direction."@en ;
+    rdfs:subClassOf brcomp:Bearing .
+
+brcomp:SuperStructureComponent a owl:Class ;
+    rdfs:label "Ueberbauelement"@de,
+        "Bridge superstructure element"@en ;
+    rdfs:comment "Component that is contained in the BridgeSuperStructure zone."@en ;
+    rdfs:subClassOf brot:Component .
+
+brcomp:GirderComponent a owl:Class ;
+    rdfs:label "Brueckendeck (gesamter Querschnitt des Fahrbahntragwerks)"@de,
+        " girder"@en ;
+    rdfs:comment "Component that is aggregated in a Girder."@en ;
+    rdfs:subClassOf brcomp:SuperStructureComponent .
+
+brcomp:FinishingComponent a owl:Class ;
+    rdfs:label "Ausbauelement einer Bruecke"@de,
+        " Finishing Component"@en ;
+    rdfs:comment "Component that is installed during the finishing phase of the bridge construction after the shell construction phase (e.g. railing, bridge cap, etc.). Has no load-bearing capacity."@en ;
+    rdfs:subClassOf brot:Component .
+
+brcomp:SubStructureComponent a owl:Class ;
+    rdfs:label "Unterbauelement einer Bruecke"@de,
+        "Substructure Element"@en ;
+    rdfs:comment "Component that is contained in the BridgeSubStructure zone."@en ;
+    rdfs:subClassOf brot:Component .
+
