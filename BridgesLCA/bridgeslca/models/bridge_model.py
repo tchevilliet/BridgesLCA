@@ -53,9 +53,7 @@ def within_interval(ref_value: float, targe_value: float, tolerance: float) -> b
         return False
 
 
-within_interval(3, 3, 0.5)
-
-
+# TODO: insert data in the __init__
 class SentierModel:
     def __init__(self, demand: Demand, run_config: RunConfig):
         self.demand = demand
@@ -91,13 +89,34 @@ class SentierModel:
         self.data_validity_checks()
         self.resample()
 
+    def make_the_bridge(self) -> dict:
+        custom_bridge = {}
+        custom_bridge["foundation"] = self.demand.weight / 2
+        custom_bridge["piles"] = int(self.demand.lenght / 50)
+        print(custom_bridge)
+        return custom_bridge
+
     # try to insert check in the existing df
     def run(self) -> list[Demand]:
+
         if isinstance(self.check_tolerance(), str):
             return data.reported_technology.loc[self.check_tolerance(), :]
 
         else:
-            print("no matching df")
+            custom_bridge = self.make_the_bridge()
+            for card, parts in enumerate(custom_bridge.keys()):
+                uri_of_flow = data.list_uri[parts]
+                input_df = custom_bridge[parts] * data.all_data[uri_of_flow]
+
+                input_df
+                if card == 0:
+                    final_df = input_df.copy()
+                else:
+                    fianl_df = pd.concat([final_df, input_df], axis=0)
+
+            return fianl_df
+
+            # print("no matching df")
             # return self.demand.amount * self.get_model_data(self.demand)
 
 
@@ -111,12 +130,12 @@ D = Demand(
     amount=2.0,
     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
     weight=200,
-    lenght=710,
+    lenght=1200,
     tolerance=0.10,
 )
 m = SentierModel(demand=D, run_config=RunConfig())
 m.run()
-m.check_tolerance()
+# m.check_tolerance()
 
 for col in m.run():
 
@@ -136,3 +155,4 @@ foundation = pd.DataFrame({"Cement": [1], "Steel": [10]})
 D.product_iri.ref
 
 data.list_uri
+int(3.45)
