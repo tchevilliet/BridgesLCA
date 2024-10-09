@@ -34,14 +34,26 @@ class Demand(BaseModel):
     amount: float
     spatial_context: IRI = IRI(ref="https://sws.geonames.org/6295630/")
     temporal_range: SimpleDataRange  # TBD
-    lenght = int
-    weight = int
-    tolerance = float
+    lenght: float
+    weight: float
+    tolerance: float
 
 
 class RunConfig(BaseModel):
     outliers_raise_error: bool = False
     num_samples: int = 1000
+
+
+def within_interval(ref_value: float, targe_value: float, tolerance: float) -> bool:
+    if (ref_value < targe_value * (1 + tolerance)) and (
+        ref_value > targe_value * (1 - tolerance)
+    ):
+        return True
+    else:
+        return False
+
+
+within_interval(3, 3, 0.5)
 
 
 class SentierModel:
@@ -58,17 +70,35 @@ class SentierModel:
             print(" no DF")
 
         return inputs_df
-    
-    def check_tolerance
+
+    def check_tolerance(self) -> str:
+        for row in data.reported_technology.index:
+
+            if within_interval(
+                self.demand.weight,
+                data.reported_technology.loc[row, "weight"],
+                self.demand.tolerance,
+            ) and within_interval(
+                self.demand.lenght,
+                data.reported_technology.loc[row, "lenght"],
+                self.demand.tolerance,
+            ):
+                print("OK -->", row)
+                return row
 
     def prepare(self) -> None:
         self.get_model_data()
         self.data_validity_checks()
         self.resample()
 
+    # try to insert check in the existing df
     def run(self) -> list[Demand]:
+        if isinstance(self.check_tolerance(), str):
+            return data.reported_technology.loc[self.check_tolerance(), :]
 
-        return self.demand.amount * self.get_model_data(self.demand)
+        else:
+            print("no matching df")
+            # return self.demand.amount * self.get_model_data(self.demand)
 
 
 list_uri = {
@@ -80,9 +110,13 @@ D = Demand(
     properties=None,
     amount=2.0,
     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
+    weight=200,
+    lenght=710,
+    tolerance=0.10,
 )
 m = SentierModel(demand=D, run_config=RunConfig())
 m.run()
+m.check_tolerance()
 
 for col in m.run():
 
