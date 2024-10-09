@@ -39,8 +39,8 @@ class SentierModel:
     def __init__(self, demand: Demand, run_config: RunConfig):
         pass
 
-    def get_model_data(self) -> list[pd.DataFrame]:  # Duck typing also fine
-        pass
+    def get_model_data(self, dataframe_source : pd.DataFrame) -> list[pd.DataFrame]:  # Duck typing also fine
+        return [dataframe_source]
 
     def prepare(self) -> None:
         self.get_model_data()
@@ -49,6 +49,7 @@ class SentierModel:
 
     def run(self) -> list[Demand]:
         pass
+        #return res
     
 
 
