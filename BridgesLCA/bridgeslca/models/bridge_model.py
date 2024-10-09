@@ -5,15 +5,14 @@ Created on Tue Oct  8 17:50:06 2024
 
 @author: thibault.chevilliet
 """
+#%%
 import pandas as pd
-
-
 from datetime import date
 from pydantic import BaseModel
 from typing import Optional, NamedTuple
 
 import bridgeslca.models.input_data as data
-
+#%%
 # import sentier_data_tools as sdt
 data.all_data
 
@@ -34,8 +33,8 @@ class Demand(BaseModel):
     amount: float
     spatial_context: IRI = IRI(ref="https://sws.geonames.org/6295630/")
     temporal_range: SimpleDataRange  # TBD
-    lenght: float
-    weight: float
+    length: float
+    width: float
     tolerance: float
 
 
@@ -44,48 +43,28 @@ class RunConfig(BaseModel):
     num_samples: int = 1000
 
 
-def within_interval(ref_value: float, targe_value: float, tolerance: float) -> bool:
-    if (ref_value < targe_value * (1 + tolerance)) and (
-        ref_value > targe_value * (1 - tolerance)
-    ):
-        return True
-    else:
-        return False
-
-
-within_interval(3, 3, 0.5)
-
+def within_interval(ref_value: float, target_value: float, tolerance: float) -> bool:
+    return (ref_value < target_value * (1 + tolerance))&(ref_value > target_value * (1 - tolerance))
 
 class SentierModel:
-    def __init__(self, demand: Demand, run_config: RunConfig):
+    def __init__(self, demand: Demand,run_config: RunConfig):
         self.demand = demand
 
-    def get_model_data(
-        self, demand: Demand
-    ) -> list[pd.DataFrame]:  # Duck typing also fine
-        if self.demand.product_iri.ref in data.all_data.keys():
-            inputs_df = data.all_data[self.demand.product_iri.ref]
+    def get_model_data(self, data : dict) -> list[pd.DataFrame]:  # Duck typing also fine
+        self.data = data
+        if self.demand.product_iri.ref not in self.data.keys():
+            raise ValueError
+        return self.data[self.demand.product_iri.ref]
 
-        else:
-            print(" no DF")
-
-        return inputs_df
-
-    def check_tolerance(self) -> str:
-        for row in data.reported_technology.index:
-
-            if within_interval(
-                self.demand.weight,
-                data.reported_technology.loc[row, "weight"],
-                self.demand.tolerance,
-            ) and within_interval(
-                self.demand.lenght,
-                data.reported_technology.loc[row, "lenght"],
-                self.demand.tolerance,
-            ):
-                print("OK -->", row)
-                return row
-
+    def check_tolerance(self) -> list:
+        return [row for row in data.reported_technology.index if 
+                (within_interval(self.demand.width,
+                               data.reported_technology.loc[row,"width"],
+                               self.demand.tolerance) 
+                & within_interval(self.demand.length,
+                               data.reported_technology.loc[row, "length"],
+                               self.demand.tolerance))]
+    
     def prepare(self) -> None:
         self.get_model_data()
         self.data_validity_checks()
@@ -94,13 +73,12 @@ class SentierModel:
     # try to insert check in the existing df
     def run(self) -> list[Demand]:
         if isinstance(self.check_tolerance(), str):
-            return data.reported_technology.loc[self.check_tolerance(), :]
-
+            return self.data.reported_technology.loc[self.check_tolerance(), :]
         else:
             print("no matching df")
             # return self.demand.amount * self.get_model_data(self.demand)
 
-
+#%%
 list_uri = {
     "Cement": "http://data.europa.eu/xsp/cn2024/cement",
     "Steel": "http://data.europa.eu/xsp/cn2024/steel",
@@ -110,8 +88,8 @@ D = Demand(
     properties=None,
     amount=2.0,
     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
-    weight=200,
-    lenght=710,
+    width=200,
+    length=710,
     tolerance=0.10,
 )
 m = SentierModel(demand=D, run_config=RunConfig())

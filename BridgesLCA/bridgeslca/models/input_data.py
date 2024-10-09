@@ -10,8 +10,8 @@ import pandas as pd
 d = {
     "Cement": [10, 100, 200, 300],
     "Steel": [1, 10, 20, 30],
-    "weight": [11, 110, 220, 330],
-    "lenght": [100, 300, 700, 1000],
+    "width": [11, 110, 220, 330],
+    "length": [100, 300, 700, 1000],
 }
 
 reported_technology = pd.DataFrame(
