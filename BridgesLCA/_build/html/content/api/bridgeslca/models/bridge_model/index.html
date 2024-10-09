@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bridgeslca.models.bridge_model &mdash; BridgesLCA</title>
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css?v=fd3f3429" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+    <link rel="shortcut icon" href="https://github.com/brightway-lca/brightway-documentation/blob/main/source/_static/logo/BW_favicon_500x500.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+        <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="bridgeslca.models.foundations" href="../foundations/index.html" />
+    <link rel="prev" title="bridgeslca.models" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../../index.html" class="icon icon-home">
+            BridgesLCA
+              <img src="https://raw.githubusercontent.com/brightway-lca/brightway-documentation/main/source/_static/logo/BW_all_white_transparent_landscape_wide.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../index.html">BridgesLCA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">bridgeslca</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../index.html">bridgeslca.models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../codeofconduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html"><code class="docutils literal notranslate"><span class="pre">bridgeslca</span></code> Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">BridgesLCA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">bridgeslca</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">bridgeslca.models</a></li>
+      <li class="breadcrumb-item active">bridgeslca.models.bridge_model</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/content/api/bridgeslca/models/bridge_model/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-bridgeslca.models.bridge_model">
+<span id="bridgeslca-models-bridge-model"></span><h1>bridgeslca.models.bridge_model<a class="headerlink" href="#module-bridgeslca.models.bridge_model" title="Link to this heading"></a></h1>
+<p>Created on Tue Oct  8 17:50:06 2024</p>
+<p>&#64;author: thibault.chevilliet</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.D" title="bridgeslca.models.bridge_model.D"><code class="xref py py-obj docutils literal notranslate"><span class="pre">D</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.m" title="bridgeslca.models.bridge_model.m"><code class="xref py py-obj docutils literal notranslate"><span class="pre">m</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.Demand" title="bridgeslca.models.bridge_model.Demand"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Demand</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.IRI" title="bridgeslca.models.bridge_model.IRI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IRI</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.RunConfig" title="bridgeslca.models.bridge_model.RunConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RunConfig</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.SentierModel" title="bridgeslca.models.bridge_model.SentierModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SentierModel</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.SimpleDataRange" title="bridgeslca.models.bridge_model.SimpleDataRange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SimpleDataRange</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bridgeslca.models.bridge_model.within_interval" title="bridgeslca.models.bridge_model.within_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">within_interval</span></code></a>(→ bool)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">Demand</span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.amount">
+<span class="sig-name descname"><span class="pre">amount</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.amount"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.amount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.length">
+<span class="sig-name descname"><span class="pre">length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.length" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.product_iri">
+<span class="sig-name descname"><span class="pre">product_iri</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bridgeslca.models.bridge_model.IRI" title="bridgeslca.models.bridge_model.IRI"><span class="pre">IRI</span></a></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.product_iri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.product_iri" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.properties">
+<span class="sig-name descname"><span class="pre">properties</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.properties" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.spatial_context">
+<span class="sig-name descname"><span class="pre">spatial_context</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bridgeslca.models.bridge_model.IRI" title="bridgeslca.models.bridge_model.IRI"><span class="pre">IRI</span></a></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.spatial_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.spatial_context" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.temporal_range">
+<span class="sig-name descname"><span class="pre">temporal_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#bridgeslca.models.bridge_model.SimpleDataRange" title="bridgeslca.models.bridge_model.SimpleDataRange"><span class="pre">SimpleDataRange</span></a></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.temporal_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.temporal_range" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.tolerance">
+<span class="sig-name descname"><span class="pre">tolerance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.tolerance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.tolerance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.Demand.width">
+<span class="sig-name descname"><span class="pre">width</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#Demand.width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.Demand.width" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.IRI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">IRI</span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#IRI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.IRI" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.IRI.ref">
+<span class="sig-name descname"><span class="pre">ref</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#IRI.ref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.IRI.ref" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.RunConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">RunConfig</span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#RunConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.RunConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">pydantic.BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.RunConfig.num_samples">
+<span class="sig-name descname"><span class="pre">num_samples</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1000</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#RunConfig.num_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.RunConfig.num_samples" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.RunConfig.outliers_raise_error">
+<span class="sig-name descname"><span class="pre">outliers_raise_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#RunConfig.outliers_raise_error"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.RunConfig.outliers_raise_error" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SentierModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">SentierModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">demand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#bridgeslca.models.bridge_model.Demand" title="bridgeslca.models.bridge_model.Demand"><span class="pre">Demand</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#bridgeslca.models.bridge_model.RunConfig" title="bridgeslca.models.bridge_model.RunConfig"><span class="pre">RunConfig</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SentierModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SentierModel" title="Link to this definition"></a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SentierModel.check_tolerance">
+<span class="sig-name descname"><span class="pre">check_tolerance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SentierModel.check_tolerance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SentierModel.check_tolerance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SentierModel.get_model_data">
+<span class="sig-name descname"><span class="pre">get_model_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reported_technology</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SentierModel.get_model_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SentierModel.get_model_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SentierModel.make_the_bridge">
+<span class="sig-name descname"><span class="pre">make_the_bridge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SentierModel.make_the_bridge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SentierModel.make_the_bridge" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SentierModel.prepare">
+<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SentierModel.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SentierModel.prepare" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SentierModel.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_uri</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#bridgeslca.models.bridge_model.Demand" title="bridgeslca.models.bridge_model.Demand"><span class="pre">Demand</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SentierModel.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SentierModel.run" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SentierModel.demand">
+<span class="sig-name descname"><span class="pre">demand</span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SentierModel.demand"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SentierModel.demand" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SimpleDataRange">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">SimpleDataRange</span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SimpleDataRange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SimpleDataRange" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SimpleDataRange.end">
+<span class="sig-name descname"><span class="pre">end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.date</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SimpleDataRange.end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SimpleDataRange.end" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.SimpleDataRange.start">
+<span class="sig-name descname"><span class="pre">start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">datetime.date</span></em><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#SimpleDataRange.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.SimpleDataRange.start" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.within_interval">
+<span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">within_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#within_interval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.within_interval" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.D">
+<span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">D</span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#D"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.D" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bridgeslca.models.bridge_model.m">
+<span class="sig-prename descclassname"><span class="pre">bridgeslca.models.bridge_model.</span></span><span class="sig-name descname"><span class="pre">m</span></span><a class="reference internal" href="../../../../../_modules/bridgeslca/models/bridge_model.html#m"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bridgeslca.models.bridge_model.m" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="bridgeslca.models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../foundations/index.html" class="btn btn-neutral float-right" title="bridgeslca.models.foundations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024 Brightway Developers.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

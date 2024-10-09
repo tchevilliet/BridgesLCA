@@ -3,7 +3,7 @@
 ```{button-link} https://docs.brightway.dev
 :color: info
 :expand:
-{octicon}`light-bulb;1em` BridgesLCA is a specialized package of the Brightway Software Framework
+{octicon}`light-bulb;1em` BridgesLCA is a specialized package of the Brightway Software Framework xxxx
 ```
 
 ```{toctree}
