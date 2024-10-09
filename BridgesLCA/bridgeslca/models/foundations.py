@@ -58,8 +58,8 @@ class SentierModel:
             print(" no DF")
 
         return inputs_df
-    
-    def check_tolerance
+
+    # def check_tolerance
 
     def prepare(self) -> None:
         self.get_model_data()

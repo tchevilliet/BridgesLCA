@@ -36,7 +36,7 @@ class Demand(BaseModel):
     temporal_range: SimpleDataRange  # TBD
     length: float
     width: float
-    tolerance: float
+    tolerance: Optional[float] | 0.2
 
 
 class RunConfig(BaseModel):
