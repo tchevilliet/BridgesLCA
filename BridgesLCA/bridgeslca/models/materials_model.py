@@ -26,14 +26,21 @@ def one_structural_component(df: pd.DataFrame,
                              user_type=None) -> pd.DataFrame:
     # if user didn't put any type :
     if user_type is None:
-        if user_length >= 80:
+        if user_length >=400 :
+            user_type = "Special Prestressed Concrete"
+        elif user_length >= 80 and user_length<400:
             user_type = "Composite"
-        elif user_length < 10:
-            user_type = "Reinforced Concrete"
-        else:
+        elif user_length >= 10 and user_length<80 :
             user_type = "Prestressed Concrete"
+        else :
+            user_type = "Reinforced Concrete"
 
-    df_per_type = df[df["Type"] == user_type]  # filtered data with the right type
+    if user_type == "Special Prestressed Concrete":
+        df_per_type = df[
+            (df["Type"] =="Cantilever Prestressed Concrete")|(df["Type"]=="Extradosed Prestressed Concrete")]
+    else :
+        df_per_type = df[df["Type"] == user_type]  # filtered data with the right type
+    
     ratio = np.mean(
         df_per_type[column]
         / (df_per_type['Length']*df_per_type['Width'])
@@ -82,6 +89,6 @@ my_data = pd.read_excel('/home/thibault.chevilliet@enpc.fr/Bureau/DDS Autumn Sch
 
 my_list = list(my_data.columns[9:])
 # %% Calculation
-a = all_structural_components(my_data, my_list, 100, 1)
+a = all_structural_components(my_data, my_list, 500, 20)
 
 # %%
