@@ -7,12 +7,14 @@ Created on Tue Oct  8 17:50:06 2024
 """
 # %%Import needed packages
 import pandas as pd
+import os
 from datetime import date
 from pydantic import BaseModel
 from typing import Optional, NamedTuple
 
 import bridgeslca.models.input_data as data
 import bridgeslca.models.materials_model as mat
+
 
 # %%
 # import sentier_data_tools as sdt
@@ -127,19 +129,53 @@ class BridgeModel(SentierModel):
 
 
 # %%
-
+############## RUN the model
 D = Demand(
     product_iri=IRI(ref="http://data.europa.eu/xsp/cn2024/911440000080"),
     properties=None,
     amount=2.0,
     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
-    width=12,
+    width=120,
     length=50,
-    tolerance=0.01,
+    tolerance=0.20,
 )
 m = SentierModel(demand=D, run_config=RunConfig())
 m.get_model_data(data.all_data, data.df_bridge_mod)
 result = m.run(data.dict_name_uri)
+
+# all the bridges
+path_home = os.getcwd()
+
+path_repo = os.path.join(path_home, "Departier_repo")
+path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/bridgesdbUS.xlsx")
+
+df_bridge_US = pd.read_excel(path_file, sheet_name="Sheet1")
+
+df_bridge_US_select = df_bridge_US[
+    df_bridge_US["Kind of material and/or design 43A"] == "Prestressed Concrete"
+]
+us_bridge_analysis = {}
+
+
+############## RUN the model for all US bridges
+for brg in df_bridge_US_select.index:
+
+    D = Demand(
+        product_iri=IRI(ref="http://data.europa.eu/xsp/cn2024/911440000080"),
+        properties=None,
+        amount=1,
+        temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
+        width=df_bridge_US_select.loc[brg, "Width (Deck) 052"],
+        length=df_bridge_US_select.loc[brg, "Length 049"],
+        tolerance=0.10,
+    )
+    m = SentierModel(demand=D, run_config=RunConfig())
+    # m.get_model_data(data.all_data, data.df_bridge_mod)
+    us_bridge_analysis[brg] = m.run(data.dict_name_uri)
+
+all_keys = list(us_bridge_analysis.keys())
+
+us_bridge_analysis_df = pd.DataFrame(us_bridge_analysis[1447])
 # m.check_tolerance()
 
 # --- TOY MODEL

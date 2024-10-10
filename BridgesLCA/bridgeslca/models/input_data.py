@@ -13,6 +13,7 @@ from rdflib import Graph
 from rdflib import URIRef
 from rdflib.namespace import RDF, SKOS
 from rdflib import Literal
+from os.path import dirname
 
 
 path_home = os.getcwd()
@@ -93,7 +94,17 @@ for a, b, c in brdge_db_uri.triples((None, SKOS.prefLabel, None)):
     dict_name_uri[str(c)] = str(a)
 
 
-# Data fortoy-model
+# all the bridges
+path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/bridgesdbUS.xlsx")
+
+df_bridge_US = pd.read_excel(path_file, sheet_name="Sheet1")
+
+df_bridge_US_select = df_bridge_US[
+    df_bridge_US["Kind of material and/or design 43A"] == "Prestressed Concrete"
+]
+
+
+# Data for toy-model
 
 # dataframe
 d = {
