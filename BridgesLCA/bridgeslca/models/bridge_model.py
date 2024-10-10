@@ -5,43 +5,25 @@ Created on Tue Oct  8 17:50:06 2024
 
 @author: thibault.chevilliet
 """
-# %%
+# %%Import needed packages
 import pandas as pd
 from datetime import date
 from pydantic import BaseModel
 from typing import Optional, NamedTuple
+import sentier_data_tools as sdt
 
-import bridgeslca.models.input_data as data
-
-# %%
-# import sentier_data_tools as sdt
-data.all_data
+# %%Class definition
 
 
-class IRI(BaseModel):
-    # Can look up info
-    ref: str
-
-
-class SimpleDataRange(NamedTuple):
-    start: date
-    end: date
-
-
-class Demand(BaseModel):
-    product_iri: IRI
-    properties: Optional[list]
-    amount: float
-    spatial_context: IRI = IRI(ref="https://sws.geonames.org/6295630/")
-    temporal_range: SimpleDataRange  # TBD
-    length: float
-    width: float
-    tolerance: Optional[float] | 0.2
-
-
-class RunConfig(BaseModel):
-    outliers_raise_error: bool = False
-    num_samples: int = 1000
+# class Demand(BaseModel):
+#     product_iri: IRI
+#     properties: Optional[list]
+#     amount: float
+#     spatial_context: IRI = IRI(ref="https://sws.geonames.org/6295630/")
+#     temporal_range: SimpleDataRange  # TBD
+#     length: float
+#     width: float
+#     tolerance: Optional[float] | 0.2
 
 
 def within_interval(ref_value: float, target_value: float, tolerance: float) -> bool:
@@ -50,7 +32,8 @@ def within_interval(ref_value: float, target_value: float, tolerance: float) -> 
     )
 
 
-class SentierModel:
+class BridgeModel(SentierModel):
+    
     def __init__(self, demand: Demand, run_config: RunConfig):
         self.demand = demand
 
