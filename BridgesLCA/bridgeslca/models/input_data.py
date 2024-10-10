@@ -34,15 +34,16 @@ for card, val in enumerate(df_bridge.iloc[0, :]):
 
 
 df_bridge_mod = pd.DataFrame(data=df_bridge.iloc[1:, :].values, columns=new_col)
+df_bridge_mod = df_bridge_mod.set_index("Name")
 
-# create dictionary
+# create dictionary with URI as key and BOM as argument
 uri_bridge = "http://www.example.com/concepts#bridge"
 
-brdge_db_uri = Graph()
+brdge_db_uri = Graph()  # ontoly
 bridge_db_dict = {}
 
 # rows (name of the bridges)
-for card, bridge in enumerate(df_bridge_mod.iloc[:, 0]):
+for card, bridge in enumerate(df_bridge_mod.index):
 
     clean_bridge_name = bridge.replace(" ", "_")
     fake_uri = "http://www.example.com/concepts#" + clean_bridge_name
@@ -81,20 +82,15 @@ for card, col_field in enumerate(df_bridge.columns):
         (
             URIRef(fake_uri),  # Subject
             SKOS.prefLabel,
-            Literal(bridge, lang="fr"),
+            Literal(col_field, lang="fr"),
         )
     )
 
 
 brdge_db_uri.serialize()
-
-dict_name_uri={}
-for a,b, c in brdge_db_uri.triples((None, None, SKOS.Concept))
-
-
-for key,arg in bridge_db_dict:
-    new_key=brdge_db_uri.triples((None, None, SKOS.Concept)):
-    
+dict_name_uri = {}  # dictionary with Name as key anr URI as argument
+for a, b, c in brdge_db_uri.triples((None, SKOS.prefLabel, None)):
+    dict_name_uri[str(c)] = str(a)
 
 
 # Data fortoy-model
