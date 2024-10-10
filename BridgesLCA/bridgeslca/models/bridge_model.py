@@ -53,8 +53,8 @@ def within_interval(ref_value: float, target_value: float, tolerance: float) -> 
     )
 
 
-class BridgeModel(SentierModel):
-    
+class SentierModel:
+
     def __init__(self, demand: Demand, run_config: RunConfig):
         self.demand = demand
 
