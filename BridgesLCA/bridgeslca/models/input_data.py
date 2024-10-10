@@ -15,16 +15,19 @@ from rdflib.namespace import RDF, SKOS
 from rdflib import Literal
 from os.path import dirname
 
-
 path_home = os.getcwd()
 
-path_repo = os.path.join(path_home, "Departier_repo")
+#path_repo = os.path.join(path_home, "Departier_repo") #Stefano's
+path_repo = os.path.join(path_home, "Bureau/DDS Autumn School") #Thibault's
 path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
 
 assert os.path.exists(path_file)
 
-df_bridge = pd.read_excel(path_file, sheet_name="bridges_data")
 
+df_bridge = pd.read_excel(path_file, sheet_name="bridges_data")
+df_bridge_copy = df_bridge.copy()
+df_bridge=df_bridge.set_index("Name")
+#%%
 new_col = []
 for card, val in enumerate(df_bridge.iloc[0, :]):
     if not val == val:
@@ -34,7 +37,8 @@ for card, val in enumerate(df_bridge.iloc[0, :]):
         new_col.append(df_bridge.columns[card] + "[" + val + "]")
 
 
-df_bridge_mod = pd.DataFrame(data=df_bridge.iloc[1:, :].values, columns=new_col)
+
+df_bridge_mod = pd.DataFrame(data=df_bridge_copy.iloc[1:, :].values, columns=new_col)
 df_bridge_mod = df_bridge_mod.set_index("Name")
 
 # create dictionary with URI as key and BOM as argument
