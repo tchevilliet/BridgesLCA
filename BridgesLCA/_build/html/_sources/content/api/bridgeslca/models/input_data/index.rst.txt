@@ -1,0 +1,35 @@
+bridgeslca.models.input_data
+============================
+
+.. py:module:: bridgeslca.models.input_data
+
+.. autoapi-nested-parse::
+
+   Created on Wed Oct  9 11:00:04 2024
+
+   @author: StefanoMerciai
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   bridgeslca.models.input_data.all_data
+   bridgeslca.models.input_data.d
+   bridgeslca.models.input_data.list_uri
+   bridgeslca.models.input_data.reported_technology
+
+
+Module Contents
+---------------
+
+.. py:data:: all_data
+
+.. py:data:: d
+
+.. py:data:: list_uri
+
+.. py:data:: reported_technology
+

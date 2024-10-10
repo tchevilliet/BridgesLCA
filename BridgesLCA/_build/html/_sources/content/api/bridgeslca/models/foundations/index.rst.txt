@@ -1,0 +1,137 @@
+bridgeslca.models.foundations
+=============================
+
+.. py:module:: bridgeslca.models.foundations
+
+.. autoapi-nested-parse::
+
+   Created on Tue Oct  8 17:50:06 2024
+
+   @author: thibault.chevilliet
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   bridgeslca.models.foundations.D
+   bridgeslca.models.foundations.foundation
+   bridgeslca.models.foundations.list_uri
+   bridgeslca.models.foundations.m
+   bridgeslca.models.foundations.new_D
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   bridgeslca.models.foundations.Demand
+   bridgeslca.models.foundations.IRI
+   bridgeslca.models.foundations.RunConfig
+   bridgeslca.models.foundations.SentierModel
+   bridgeslca.models.foundations.SimpleDataRange
+
+
+Module Contents
+---------------
+
+.. py:class:: Demand
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   .. py:attribute:: amount
+      :type:  float
+
+
+   .. py:attribute:: lenght
+
+
+   .. py:attribute:: product_iri
+      :type:  IRI
+
+
+   .. py:attribute:: properties
+      :type:  Optional[list]
+
+
+   .. py:attribute:: spatial_context
+      :type:  IRI
+
+
+   .. py:attribute:: temporal_range
+      :type:  SimpleDataRange
+
+
+   .. py:attribute:: tolerance
+
+
+   .. py:attribute:: weight
+
+
+.. py:class:: IRI
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   .. py:attribute:: ref
+      :type:  str
+
+
+.. py:class:: RunConfig
+
+   Bases: :py:obj:`pydantic.BaseModel`
+
+
+   .. py:attribute:: num_samples
+      :type:  int
+      :value: 1000
+
+
+
+   .. py:attribute:: outliers_raise_error
+      :type:  bool
+      :value: False
+
+
+
+.. py:class:: SentierModel(demand: Demand, run_config: RunConfig)
+
+   .. py:method:: get_model_data(demand: Demand) -> list[pandas.DataFrame]
+
+
+   .. py:method:: prepare() -> None
+
+
+   .. py:method:: run() -> list[Demand]
+
+
+   .. py:attribute:: demand
+
+
+.. py:class:: SimpleDataRange
+
+   Bases: :py:obj:`NamedTuple`
+
+
+   .. py:attribute:: end
+      :type:  datetime.date
+
+
+   .. py:attribute:: start
+      :type:  datetime.date
+
+
+.. py:data:: D
+
+.. py:data:: foundation
+
+.. py:data:: list_uri
+
+.. py:data:: m
+
+.. py:data:: new_D
+
