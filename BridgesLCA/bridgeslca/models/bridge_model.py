@@ -53,10 +53,11 @@ class SentierModel:
     def __init__(self, demand: Demand, run_config: RunConfig):
         self.demand = demand
 
-    def get_model_data(
-        self, all_data: dict, reported_technology: pd.DataFrame
+    def get_model_data(self
+                       #,all_data: dict #not needed and is confusing into get_model_data args
+                       ,reported_technology: pd.DataFrame
     ) -> list[pd.DataFrame]:  # Duck typing also fine
-        self.all_data = all_data
+        #self.all_data = all_data
         self.reported_technology = reported_technology
 
     def check_tolerance(self) -> list:
@@ -92,7 +93,9 @@ class SentierModel:
         print(custom_bridge)
         return custom_bridge
 
-    def run(self, list_uri: dict) -> list[Demand]:
+    def run(self
+            #, list_uri: dict #not needed and makes error in input_data
+            ) -> list[Demand]:
 
         # try to insert check in the existing df
         if len(self.check_tolerance()) > 0:
@@ -135,12 +138,12 @@ D = Demand(
     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
     width=120,
     length=50,
-    tolerance=0.01,
+    tolerance=0.2,
 )
 m = SentierModel(demand=D, run_config=RunConfig())
 m.get_model_data(data.all_data, data.df_bridge)
-result = m.run(data.dict_name_uri)
-
+#result = m.run(data.dict_name_uri)
+result = m.run()
 
 #%%
 # all the bridges
