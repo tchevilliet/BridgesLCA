@@ -2,6 +2,7 @@
 
 <https://lca.aau.dk/FootprintAnalyser/M_BITU> a skos:Concept ;
     skos:definition "Bitumen, market of"@en ;
+    skos:notation "M_BITU"@en ;
     skos:relatedMatch <http://data.europa.eu/ehl/cpa21/192042> .
 
 <https://lca.aau.dk/FootprintAnalyser/M_CMNT> a skos:Concept ;
@@ -11,9 +12,16 @@
 
 <https://lca.aau.dk/FootprintAnalyser/M_SDCL> a skos:Concept ;
     skos:closeMatch <http://data.europa.eu/ehl/cpa21/0812> ;
-    skos:definition "Sand and clay, market of"@en .
+    skos:definition "Sand and clay, market of"@en ;
+    skos:notation "M_SDCL"@en .
 
 <https://lca.aau.dk/FootprintAnalyser/M_STEL> a skos:Concept ;
-    skos:closeMatch <http://data.europa.eu/ehl/cpa21/241> ;
-    skos:definition "Production of basic iron and steel and of ferro-alloys and first products thereof, market of"@en .
+    skos:closeMatch <http://data.europa.eu/ehl/cpa21/24> ;
+    skos:definition "Production of basic iron and steel and of ferro-alloys and first products thereof, market of"@en ;
+    skos:notation "M_STEL"@en .
+
+<https://lca.aau.dk/FootprintAnalyser/M_STON> a skos:Concept ;
+    skos:closeMatch <http://data.europa.eu/ehl/cpa21/0811> ;
+    skos:definition "Stone, market of"@en ;
+    skos:notation "M_STON"@en .
 
