@@ -19,13 +19,11 @@ path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
 
 
 # Define a function that creates the data for one structural component only
-def one_structural_component(
-    df: pd.DataFrame,
-    column: str,
-    user_length: float,
-    user_width: float,
-    user_type=None,
-) -> pd.DataFrame:
+def one_structural_component(df: pd.DataFrame,
+                             column: str,
+                             user_length: float,
+                             user_width: float,
+                             user_type=None) -> pd.DataFrame:
     # if user didn't put any type :
     if user_type is None:
         if user_length >= 80:
@@ -44,9 +42,9 @@ def one_structural_component(
     # we build the result dataframe
     res = pd.DataFrame(
         index=[column], 
-        columns=["material_IRI","component_IRI""unit", "amount", "phase"])
+        columns=["material_IRI","component_IRI","unit", "amount", "phase"])
     res["material_IRI"] = bridges_vocab[column]['material']
-    res["component_IRI"] = bridges_vocab[column]['material']
+    res["component_IRI"] = bridges_vocab[column]['component']
     res["unit"] = df[column].iloc[0]
     res["amount"] = ratio * user_length * user_width
     res["phase"] = "construction"
@@ -61,31 +59,29 @@ def all_structural_components(df: pd.DataFrame,
                               user_type=None) -> pd.DataFrame:
     for card, col in enumerate(columns):
         if card == 0:
-            res = one_structural_component(
-                df, col, user_length, user_width, user_type=None
-            )
+            res = one_structural_component(df,
+                                           col,
+                                           user_length,
+                                           user_width,
+                                           user_type=None)
         else:
-            res = pd.concat(
-                [
-                    res,
-                    one_structural_component(
-                        df, col, user_length, user_width, user_type=None
-                    ),
-                ]
-            )
+            res = pd.concat([res,one_structural_component(df,
+                                                          col,
+                                                          user_length,
+                                                          user_width,
+                                                          user_type=None)
+                             ])
     return res
 
 
 # %% import data
 
-# my_data = pd.read_excel(
-#    r"C:\Users\julien.cravero\source\repos\BridgesLCA\BridgesLCA\data\Bridges.xlsx"
-# )
+my_data = pd.read_excel('/home/thibault.chevilliet@enpc.fr/Bureau/DDS Autumn School/BridgesLCA/BridgesLCA/data/Bridges.xlsx')
 # my_data = pd.read_excel(path_file)
 
 
-# my_list = list(my_data.columns[9:])
+my_list = list(my_data.columns[9:])
 # %% Calculation
-# a = all_structural_components(my_data, my_list, 100, 1)
+a = all_structural_components(my_data, my_list, 100, 1)
 
 # %%
