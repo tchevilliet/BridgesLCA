@@ -64,13 +64,20 @@ for c in df.columns :
     if "steel" in c.lower() :
         bridges_vocab[c]['material'] = " http://data.europa.eu/cpv/cpv/14622000"
 
-#Method 3: link material to CPA 2.1 in EU vocab
+#Method 3: link material to CPA 2.1 in EU vocab --> concrete products for construction and steel products
 for c in df.columns :
-
     if "concrete" in c.lower() :
         bridges_vocab[c]['material'] =   "http://data.europa.eu/ehl/cpa21/23611"
     if "steel" in c.lower() :
         bridges_vocab[c]['material'] =  "http://data.europa.eu/ehl/cpa21/24312"
+
+#Method 4: link material to CPA 2.1 in EU vocab --> cement and steel to compare with I/O results
+for c in df.columns :
+    if "concrete" in c.lower() :
+        bridges_vocab[c]['material'] = "http://data.europa.eu/ehl/cpa21/235"  
+    if "steel" in c.lower() :
+        bridges_vocab[c]['material'] = "http://data.europa.eu/ehl/cpa21/241" 
+
 
 
  
