@@ -12,6 +12,7 @@ from pydantic import BaseModel
 from typing import Optional, NamedTuple
 
 import bridgeslca.models.input_data as data
+import bridgeslca.models.materials_model as mat
 
 # %%
 # import sentier_data_tools as sdt
@@ -100,16 +101,23 @@ class SentierModel:
             return self.reported_technology.loc[self.check_tolerance(), :]
         # creates a customized bridge
         else:
-            custom_bridge = self.make_the_bridge()
-            for card, parts in enumerate(custom_bridge.keys()):
-                uri_of_flow = list_uri[parts]
-                input_df = custom_bridge[parts] * data.all_data[uri_of_flow]
 
-                input_df
-                if card == 0:
-                    final_df = input_df.copy()
-                else:
-                    fianl_df = pd.concat([final_df, input_df], axis=0)
+            fianl_df = mat.all_structural_components(
+                self.reported_technology,
+                list(self.reported_technology.columns[9:]),
+                self.demand.length,
+                self.demand.width,
+            )
+            # custom_bridge = self.make_the_bridge()
+            # for card, parts in enumerate(custom_bridge.keys()):
+            #    uri_of_flow = list_uri[parts]
+            #    input_df = custom_bridge[parts] * data.all_data[uri_of_flow]
+
+            #    input_df
+            #    if card == 0:
+            #        final_df = input_df.copy()
+            #    else:
+            #        fianl_df = pd.concat([final_df, input_df], axis=0)
 
             return fianl_df
 
@@ -130,7 +138,7 @@ D = Demand(
 )
 m = SentierModel(demand=D, run_config=RunConfig())
 m.get_model_data(data.all_data, data.df_bridge_mod)
-m.run(data.dict_name_uri)
+result = m.run(data.dict_name_uri)
 # m.check_tolerance()
 
 # --- TOY MODEL
