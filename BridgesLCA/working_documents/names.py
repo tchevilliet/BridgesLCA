@@ -37,6 +37,7 @@ for c in df.columns:
 #%%
 bridges_vocab = {c : {'material' : '', 'component' :''} for c in df.columns[9:]}
 
+#Method 1: link to bridge ontology from TU Dresden separating material and component
 for c in df.columns:
     for (s,p,o) in g_components : 
         if s[24:] in str(c) and len(s)!=23  :
@@ -56,5 +57,22 @@ bridges_vocab['Structural Steel for Deck']['material'] = 'https://w3id.org/bmat#
 bridges_vocab['Structural Steel for Piles']['material'] = 'https://w3id.org/bmat#BuildingMaterial'
 bridges_vocab['Structural Steel for Railings']['material'] = 'https://w3id.org/bmat#BuildingMaterial'
 
+#Method 2: change material URI to link material to EU vocab
+for c in df.columns :
+    if "concrete" in c.lower() :
+        bridges_vocab[c]['material'] =  "http://data.europa.eu/cpv/cpv/44114000"
+    if "steel" in c.lower() :
+        bridges_vocab[c]['material'] = " http://data.europa.eu/cpv/cpv/14622000"
+
+#Method 3: link material to CPA 2.1 in EU vocab
+for c in df.columns :
+
+    if "concrete" in c.lower() :
+        bridges_vocab[c]['material'] =   "http://data.europa.eu/ehl/cpa21/23611"
+    if "steel" in c.lower() :
+        bridges_vocab[c]['material'] =  "http://data.europa.eu/ehl/cpa21/24312"
+
+
+ 
 
 
