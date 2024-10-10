@@ -5,6 +5,99 @@ Created on Wed Oct  9 11:00:04 2024
 @author: StefanoMerciai
 """
 import pandas as pd
+import numpy as np
+import os
+from pathlib import Path
+
+from rdflib import Graph
+from rdflib import URIRef
+from rdflib.namespace import RDF, SKOS
+from rdflib import Literal
+
+
+path_home = os.getcwd()
+
+path_repo = os.path.join(path_home, "Departier_repo")
+path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
+
+assert os.path.exists(path_file)
+
+df_bridge = pd.read_excel(path_file, sheet_name="bridges_data")
+
+new_col = []
+for card, val in enumerate(df_bridge.iloc[0, :]):
+    if not val == val:
+        new_col.append(df_bridge.columns[card])
+    else:
+
+        new_col.append(df_bridge.columns[card] + "[" + val + "]")
+
+
+df_bridge_mod = pd.DataFrame(data=df_bridge.iloc[1:, :].values, columns=new_col)
+
+# create dictionary
+uri_bridge = "http://www.example.com/concepts#bridge"
+
+brdge_db_uri = Graph()
+bridge_db_dict = {}
+
+# rows (name of the bridges)
+for card, bridge in enumerate(df_bridge_mod.iloc[:, 0]):
+
+    clean_bridge_name = bridge.replace(" ", "_")
+    fake_uri = "http://www.example.com/concepts#" + clean_bridge_name
+
+    brdge_db_uri.add((URIRef(fake_uri), RDF.type, SKOS.Concept))  # Subject
+
+    brdge_db_uri.add(
+        (
+            URIRef(fake_uri),  # Subject
+            SKOS.prefLabel,
+            Literal(bridge, lang="fr"),
+        )
+    )
+
+    brdge_db_uri.add(
+        (
+            URIRef(fake_uri),  # Subject
+            SKOS.narrower,
+            URIRef(uri_bridge),
+        )
+    )
+
+    # create dictionary (our databse of existing bridges)
+    bridge_db_dict[fake_uri] = df_bridge_mod.iloc[card, :]
+
+for card, col_field in enumerate(df_bridge.columns):
+
+    clean_col_field = col_field.replace(" ", "_")
+    fake_uri = "http://www.example.com/concepts#" + clean_col_field
+
+    unit_flow = df_bridge.iloc[0, card]
+
+    brdge_db_uri.add((URIRef(fake_uri), RDF.type, SKOS.Concept))  # Subject
+
+    brdge_db_uri.add(
+        (
+            URIRef(fake_uri),  # Subject
+            SKOS.prefLabel,
+            Literal(bridge, lang="fr"),
+        )
+    )
+
+
+brdge_db_uri.serialize()
+
+dict_name_uri={}
+for a,b, c in brdge_db_uri.triples((None, None, SKOS.Concept))
+
+
+for key,arg in bridge_db_dict:
+    new_key=brdge_db_uri.triples((None, None, SKOS.Concept)):
+    
+
+
+# Data fortoy-model
 
 # dataframe
 d = {
