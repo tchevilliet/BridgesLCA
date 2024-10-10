@@ -31,4 +31,4 @@ for c in df.columns :
     for (s,p,o) in g : 
         if o in c :
             print(s)
-bridges_vocab = {c: 0 for c in df.columns[]}
+bridges_vocab = {c : 0 for c in df.columns[9:]}
