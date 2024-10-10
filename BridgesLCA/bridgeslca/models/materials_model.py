@@ -10,10 +10,10 @@ from rdflib.namespace import RDF, SKOS
 from rdflib import Literal
 from names import bridges_vocab #import the dictionary with columns names and IRIs
 
-path_home = os.getcwd()
+# path_home = os.getcwd()
 
-path_repo = os.path.join(path_home, "Departier_repo")
-path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
+# path_repo = os.path.join(path_home, "Departier_repo")
+# path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
 
 # %% Define functions
 
