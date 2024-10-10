@@ -5,7 +5,7 @@ Created on Tue Oct  8 17:50:06 2024
 
 @author: thibault.chevilliet
 """
-# %%
+# %%Import needed packages
 import pandas as pd
 from datetime import date
 from pydantic import BaseModel
@@ -51,7 +51,8 @@ def within_interval(ref_value: float, target_value: float, tolerance: float) -> 
     )
 
 
-class SentierModel:
+class BridgeModel(SentierModel):
+    
     def __init__(self, demand: Demand, run_config: RunConfig):
         self.demand = demand
 
