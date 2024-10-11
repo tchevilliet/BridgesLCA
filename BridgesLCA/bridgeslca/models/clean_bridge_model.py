@@ -76,20 +76,22 @@ class BridgeModel:
         self.data_validity_checks()
         self.resample()
 
-    def run(self) -> list[Demand]:
+    def run(self,vocab : dict) -> list[Demand]:
         # if there's a match within the tolerance, we do the average on a narrower sample
         if len(self.check_tolerance()) > 0:
             final_df = mat.all_structural_components(
                 self.reported_technology.loc[self.check_tolerance(), :],
                 list(self.reported_technology.columns[9:]),
+                vocab,
                 self.demand.length,
-                self.demand.width,
+                self.demand.width
             )
         #if not, we're using average ratio per types
         else:
             final_df = mat.all_structural_components(
                 self.reported_technology,
                 list(self.reported_technology.columns[9:]),
+                vocab,
                 self.demand.length,
                 self.demand.width,
             )
@@ -109,4 +111,4 @@ D = Demand(
 )
 m = BridgeModel(demand=D, run_config=RunConfig())
 m.get_model_data(data.df_bridge)
-result = m.run()
+result = m.run(bridges_vocab)
