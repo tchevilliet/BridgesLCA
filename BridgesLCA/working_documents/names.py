@@ -35,7 +35,8 @@ for c in df.columns:
             print((s,c))
 
 #%%
-bridges_vocab = {c : {'material' : '', 'component' :''} for c in df.columns[9:]}
+#bridges_vocab = {c : {'material' : '', 'component' :''} for c in df.columns[9:]}
+bridges_vocab = {c : {'material' : '', 'component' : '', 'unit' : ''} for c in df.columns[9:]}
 
 #Method 1: link to bridge ontology from TU Dresden separating material and component
 for c in df.columns:
@@ -68,17 +69,25 @@ for c in df.columns :
 for c in df.columns :
     if "concrete" in c.lower() :
         bridges_vocab[c]['material'] =   "http://data.europa.eu/ehl/cpa21/23611"
+        bridges_vocab[c]['unit'] = "https://vocab.sentier.dev/units/unit/M3" #in cubic meters
     if "steel" in c.lower() :
         bridges_vocab[c]['material'] =  "http://data.europa.eu/ehl/cpa21/24312"
+        bridges_vocab[c]['unit'] = "https://vocab.sentier.dev/units/unit/KiloGM" #in kg
 
-#Method 4: link material to CPA 2.1 in EU vocab --> cement and steel to compare with I/O results
-for c in df.columns :
-    if "concrete" in c.lower() :
-        bridges_vocab[c]['material'] = "http://data.europa.eu/ehl/cpa21/235"  
-    if "steel" in c.lower() :
-        bridges_vocab[c]['material'] = "http://data.europa.eu/ehl/cpa21/241" 
+# #Method 4: link material to CPA 2.1 in EU vocab --> cement and steel to compare with I/O results
+# for c in df.columns :
+#     if "concrete" in c.lower() :
+#         bridges_vocab[c]['material'] = "http://data.europa.eu/ehl/cpa21/235"  
+#     if "steel" in c.lower() :
+#         bridges_vocab[c]['material'] = "http://data.europa.eu/ehl/cpa21/241" 
 
-
+#Translate in raw products to get a footprint based on Exiobase
+"cement" = "http://data.europa.eu/ehl/cpa21/235" 
+"steel" = "http://data.europa.eu/ehl/cpa21/241" 
+"gravel" = "http://data.europa.eu/ehl/cpa21/08121" 
+#"gravel" = "http://data.europa.eu/ehl/cpa21/081" #broader category for Stone, sand and clay
+"sand" = "http://data.europa.eu/ehl/cpa21/08121"
+"water" = "http://data.europa.eu/ehl/cpa21/360"
 
  
 
