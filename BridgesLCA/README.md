@@ -19,6 +19,13 @@
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
 
+## About the Project
+
+This model aims to produce the estimated amount of the materials needed for building a bridge based on the user input of the bridge *lenght* and *Width* and optionally *Bridge Type* based on the data on built bridges across France. 
+
+Estimated amount of materials include; Concrete (m³) for the foundation, piles, wall and abutments, piers, deck, and blinding. Structural Steel (kg) for piles, deck, railings, and Steel used for the concrete reinforcement.
+
+
 ## Installation
 
 You can install _bridgeslca_ via [pip] from [PyPI]:
