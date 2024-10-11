@@ -19,24 +19,25 @@ def one_structural_component(df: pd.DataFrame,
                              user_type=None,) -> pd.DataFrame:
     # if user didn't put any type :
     if user_type is None:
-        if user_length >=400 :
+        if user_length >= 400:
             user_type = "Special Prestressed Concrete"
-        elif user_length >= 80 and user_length<400:
+        elif user_length >= 80 and user_length < 400:
             user_type = "Composite"
-        elif user_length >= 10 and user_length<80 :
+        elif user_length >= 10 and user_length < 80:
             user_type = "Prestressed Concrete"
-        else :
+        else:
             user_type = "Reinforced Concrete"
 
     if user_type == "Special Prestressed Concrete":
         df_per_type = df[
-            (df["Type"] =="Cantilever Prestressed Concrete")|(df["Type"]=="Extradosed Prestressed Concrete")]
-    else :
+            (df["Type"] == "Cantilever Prestressed Concrete")
+            | (df["Type"] == "Extradosed Prestressed Concrete")
+        ]
+    else:
         df_per_type = df[df["Type"] == user_type]  # filtered data with the right type
-    
+
     ratio = np.mean(
-        df_per_type[column]
-        / (df_per_type['Length']*df_per_type['Width'])
+        df_per_type[column] / (df_per_type["Length"] * df_per_type["Width"])
     )  # here we use a ratio, but could be a function
 
     # we build the result dataframe
@@ -80,8 +81,10 @@ def all_structural_components(df: pd.DataFrame,
 
 # %% import data
 
+
 # my_data = pd.read_excel('/home/thibault.chevilliet@enpc.fr/Bureau/DDS Autumn School/BridgesLCA/BridgesLCA/data/Bridges.xlsx')
 # # my_data = pd.read_excel(path_file)
+
 
 
 # my_list = list(my_data.columns[9:])
