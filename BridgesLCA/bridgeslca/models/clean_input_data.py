@@ -28,15 +28,15 @@ assert os.path.exists(path_file)
 df_bridge = pd.read_excel(path_file, sheet_name="bridges_data")
 
 
-##################### Data for toy-model
-# dataframe
-d = {
-    "Cement": [10, 100, 200, 300],
-    "Steel": [1, 10, 20, 30],
-    "width": [11, 110, 220, 330],
-    "length": [100, 300, 700, 1000],
-}
-# dataframe that includes the existing reported bridges
-reported_technology = pd.DataFrame(
-    data=d, index=["bridge_1", "bridge_2", "bridge_3", "bridge_4"]
-)
+# ##################### Data for toy-model
+# # dataframe
+# d = {
+#     "Cement": [10, 100, 200, 300],
+#     "Steel": [1, 10, 20, 30],
+#     "width": [11, 110, 220, 330],
+#     "length": [100, 300, 700, 1000],
+# }
+# # dataframe that includes the existing reported bridges
+# reported_technology = pd.DataFrame(
+#     data=d, index=["bridge_1", "bridge_2", "bridge_3", "bridge_4"]
+# )
