@@ -20,16 +20,13 @@ import bridgeslca.models.materials_model as mat
 # import sentier_data_tools as sdt
 data.all_data
 
-
 class IRI(BaseModel):
     # Can look up info
     ref: str
 
-
 class SimpleDataRange(NamedTuple):
     start: date
     end: date
-
 
 class Demand(BaseModel):
     product_iri: IRI
@@ -41,45 +38,44 @@ class Demand(BaseModel):
     width: float
     tolerance: Optional[float] = 0.2  # default tolerance for both width and lenght
 
-
 class RunConfig(BaseModel):
     outliers_raise_error: bool = False
     num_samples: int = 1000
 
-
 def within_interval(ref_value: float, target_value: float, tolerance: float) -> bool:
+    print()
     return (ref_value < target_value * (1 + tolerance)) & (
         ref_value > target_value * (1 - tolerance)
     )
-
 
 class SentierModel:
 
     def __init__(self, demand: Demand, run_config: RunConfig):
         self.demand = demand
 
-    def get_model_data(
-        self, all_data: dict, reported_technology: pd.DataFrame
+    def get_model_data(self
+                       #,all_data: dict #not needed and is confusing into get_model_data args
+                       ,reported_technology: pd.DataFrame
     ) -> list[pd.DataFrame]:  # Duck typing also fine
-        self.all_data = all_data
+        #self.all_data = all_data
         self.reported_technology = reported_technology
 
     def check_tolerance(self) -> list:
-        col_name_widht = [x for x in self.reported_technology.columns if "Width" in x]
-        col_name_lenght = [x for x in self.reported_technology.columns if "Length" in x]
+        # col_name_widht = [x for x in self.reported_technology.columns if "Width" in x]
+        # col_name_lenght = [x for x in self.reported_technology.columns if "Length" in x]
 
         return [
             row
-            for row in self.reported_technology.index
+            for row in self.reported_technology.index[1:]
             if (
                 within_interval(
                     self.demand.width,
-                    self.reported_technology.loc[row, col_name_widht[0]],
+                    self.reported_technology.loc[row, 'Width'],
                     self.demand.tolerance,
                 )
                 & within_interval(
                     self.demand.length,
-                    self.reported_technology.loc[row, col_name_lenght[0]],
+                    self.reported_technology.loc[row, 'Length'],
                     self.demand.tolerance,
                 )
             )
@@ -97,7 +93,9 @@ class SentierModel:
         print(custom_bridge)
         return custom_bridge
 
-    def run(self, list_uri: dict) -> list[Demand]:
+    def run(self
+            #, list_uri: dict #not needed and makes error in input_data
+            ) -> list[Demand]:
 
         # try to insert check in the existing df
         if len(self.check_tolerance()) > 0:
@@ -105,7 +103,7 @@ class SentierModel:
         # creates a customized bridge
         else:
 
-            fianl_df = mat.all_structural_components(
+            final_df = mat.all_structural_components(
                 self.reported_technology,
                 list(self.reported_technology.columns[9:]),
                 self.demand.length,
@@ -122,7 +120,7 @@ class SentierModel:
             #    else:
             #        fianl_df = pd.concat([final_df, input_df], axis=0)
 
-            return fianl_df
+            return final_df
 
             # print("no matching df")
             # return self.demand.amount * self.get_model_data(self.demand)
@@ -130,6 +128,9 @@ class SentierModel:
 
 # %%
 ############## RUN the model
+#import df from excel file locally
+
+
 D = Demand(
     product_iri=IRI(ref="http://data.europa.eu/xsp/cn2024/911440000080"),
     properties=None,
@@ -137,12 +138,14 @@ D = Demand(
     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
     width=120,
     length=50,
-    tolerance=0.01,
+    tolerance=0.2,
 )
 m = SentierModel(demand=D, run_config=RunConfig())
-m.get_model_data(data.all_data, data.df_bridge_mod)
-result = m.run(data.dict_name_uri)
+m.get_model_data(data.all_data, data.df_bridge)
+#result = m.run(data.dict_name_uri)
+result = m.run()
 
+#%%
 # all the bridges
 path_home = os.getcwd()
 

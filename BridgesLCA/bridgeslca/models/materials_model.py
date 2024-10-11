@@ -8,20 +8,23 @@ from rdflib import Graph
 from rdflib import URIRef
 from rdflib.namespace import RDF, SKOS
 from rdflib import Literal
-from names import bridges_vocab  # import the dictionary with columns names and IRIs
+#from names import bridges_vocab #import the dictionary with columns names and IRIs
 
-path_home = os.getcwd()
+# path_home = os.getcwd()
 
-path_repo = os.path.join(path_home, "Departier_repo")
-path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
+# path_repo = os.path.join(path_home, "Departier_repo")
+# path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
 
 # %% Define functions
 
 
 # Define a function that creates the data for one structural component only
-def one_structural_component(
-    df: pd.DataFrame, column: str, user_length: float, user_width: float, user_type=None
-) -> pd.DataFrame:
+def one_structural_component(df: pd.DataFrame,
+                             column: str,
+                             vocab : dict,
+                             user_length: float,
+                             user_width: float,
+                             user_type=None,) -> pd.DataFrame:
     # if user didn't put any type :
     if user_type is None:
         if user_length >= 400:
@@ -47,11 +50,10 @@ def one_structural_component(
 
     # we build the result dataframe
     res = pd.DataFrame(
-        index=[column],
-        columns=["material_IRI", "component_IRI", "unit", "amount", "phase"],
-    )
-    res["material_IRI"] = bridges_vocab[column]["material"]
-    res["component_IRI"] = bridges_vocab[column]["component"]
+        index=[column], 
+        columns=["material_IRI","component_IRI","unit", "amount", "phase"])
+    res["material_IRI"] = vocab[column]['material']
+    res["component_IRI"] = vocab[column]['component']
     res["unit"] = df[column].iloc[0]
     res["amount"] = ratio * user_length * user_width
     res["phase"] = "construction"
@@ -59,27 +61,29 @@ def one_structural_component(
 
 
 # Loop on all columns we want to analyze in the Excel file source
-def all_structural_components(
-    df: pd.DataFrame,
-    columns: list,
-    user_length: float,
-    user_width: float,
-    user_type=None,
-) -> pd.DataFrame:
+def all_structural_components(df: pd.DataFrame,
+                              columns: list,
+                              vocab : dict,
+                              user_length: float,
+                              user_width: float,
+                              user_type=None) -> pd.DataFrame:
     for card, col in enumerate(columns):
         if card == 0:
-            res = one_structural_component(
-                df, col, user_length, user_width, user_type=None
-            )
+            res = one_structural_component(df,
+                                           col,
+                                           vocab,
+                                           user_length,
+                                           user_width,
+                                           user_type
+                                           )
         else:
-            res = pd.concat(
-                [
-                    res,
-                    one_structural_component(
-                        df, col, user_length, user_width, user_type=None
-                    ),
-                ]
-            )
+            res = pd.concat([res,one_structural_component(df,
+                                                          col,
+                                                          vocab,
+                                                          user_length,
+                                                          user_width
+                                                          )
+                             ])
     return res
 
 
@@ -96,6 +100,7 @@ my_data = pd.read_excel(path_file)
 
 my_list = list(my_data.columns[9:])
 # %% Calculation
-a = all_structural_components(my_data, my_list, 500, 20)
+# Need to define bridges_vocab before use
+#a = all_structural_components(my_data,my_list,bridges_vocab, 500, 20)
 
 # %%
