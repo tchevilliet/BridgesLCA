@@ -81,13 +81,13 @@ for c in df.columns :
 #     if "steel" in c.lower() :
 #         bridges_vocab[c]['material'] = "http://data.europa.eu/ehl/cpa21/241" 
 
-#Translate in raw products to get a footprint based on Exiobase
-"cement" = "http://data.europa.eu/ehl/cpa21/235" 
-"steel" = "http://data.europa.eu/ehl/cpa21/241" 
-"gravel" = "http://data.europa.eu/ehl/cpa21/08121" 
-#"gravel" = "http://data.europa.eu/ehl/cpa21/081" #broader category for Stone, sand and clay
-"sand" = "http://data.europa.eu/ehl/cpa21/08121"
-"water" = "http://data.europa.eu/ehl/cpa21/360"
+# #Translate in raw products to get a footprint based on Exiobase
+# "cement" = "http://data.europa.eu/ehl/cpa21/235" 
+# "steel" = "http://data.europa.eu/ehl/cpa21/241" 
+# "gravel" = "http://data.europa.eu/ehl/cpa21/08121" 
+# #"gravel" = "http://data.europa.eu/ehl/cpa21/081" #broader category for Stone, sand and clay
+# "sand" = "http://data.europa.eu/ehl/cpa21/08121"
+# "water" = "http://data.europa.eu/ehl/cpa21/360"
 
  
 

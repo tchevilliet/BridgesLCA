@@ -32,6 +32,7 @@ class Demand(BaseModel):
     temporal_range: SimpleDataRange  # TBD
     length: float
     width: float
+    bridge_type: Optional[str] = None
     tolerance: Optional[float] = 0.2  # default tolerance for both width and lenght
 
 class RunConfig(BaseModel):
@@ -84,7 +85,8 @@ class BridgeModel:
                 list(self.reported_technology.columns[9:]),
                 vocab,
                 self.demand.length,
-                self.demand.width
+                self.demand.width,
+                self.demand.bridge_type
             )
         #if not, we're using average ratio per types
         else:
@@ -94,21 +96,22 @@ class BridgeModel:
                 vocab,
                 self.demand.length,
                 self.demand.width,
+                self.demand.bridge_type
             )
 
             return final_df
 
 
 # %% RUN the model
-D = Demand(
-    product_iri=IRI(ref="http://data.europa.eu/xsp/cn2024/911440000080"),
-    properties=None,
-    amount=2.0,
-    temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
-    width=11,
-    length=44,
-    tolerance=0,
-)
-m = BridgeModel(demand=D, run_config=RunConfig())
-m.get_model_data(data.df_bridge)
-result = m.run(bridges_vocab)
+# D = Demand(
+#     product_iri=IRI(ref="http://data.europa.eu/xsp/cn2024/911440000080"),
+#     properties=None,
+#     amount=2.0,
+#     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
+#     width=11,
+#     length=44,
+#     tolerance=0,
+# )
+# m = BridgeModel(demand=D, run_config=RunConfig())
+# m.get_model_data(data.df_bridge)
+# result = m.run(bridges_vocab)
