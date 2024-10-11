@@ -22,9 +22,11 @@ path_home = os.getcwd()
 path_repo = os.path.join(path_home, "Bureau/DDS Autumn School") #Thibault's
 path_file = os.path.join(path_repo, "BridgesLCA/BridgesLCA/data/Bridges.xlsx")
 
+path_vocab = os.path.join(path_repo, "BridgesLCA/BridgesLCA/working_documents/names.py")
 assert os.path.exists(path_file)
 
 df_bridge = pd.read_excel(path_file, sheet_name="bridges_data")
+
 
 ##################### Data for toy-model
 # dataframe
