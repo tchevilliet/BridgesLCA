@@ -1,0 +1,12 @@
+,material_IRI,component_IRI,unit,amount,phase
+Concrete for Piles C30,http://data.europa.eu/ehl/cpa21/235,https://w3id.org/brcomp#Pile,m3,60.6043754524908,construction
+Structural Steel for Piles,http://data.europa.eu/ehl/cpa21/241,https://w3id.org/brcomp#Pile,kg,618.509708737864,construction
+Concrete for Foundations C30,http://data.europa.eu/ehl/cpa21/235,https://w3id.org/brcomp#Foundation,m3,112.43794595359935,construction
+Concrete for Walls and Abutments C30,http://data.europa.eu/ehl/cpa21/235,https://w3id.org/brcomp#Abutment,m3,93.41442435235409,construction
+Concrete for Piers C30,http://data.europa.eu/ehl/cpa21/235,https://w3id.org/brcomp#Pier,m3,82.59437882909045,construction
+Concrete for Deck C45,http://data.europa.eu/ehl/cpa21/235,https://w3id.org/brcomp#GirderDeck,m3,353.4373505153767,construction
+Structural Steel for Deck,http://data.europa.eu/ehl/cpa21/241,https://w3id.org/brcomp#GirderDeck,kg,0.0,construction
+Concrete for Railings C30,http://data.europa.eu/ehl/cpa21/235,https://w3id.org/brcomp#Railing,m3,3.915857605177994,construction
+Structural Steel for Railings,http://data.europa.eu/ehl/cpa21/241,https://w3id.org/brcomp#Railing,kg,6732.92993050905,construction
+Blinding Concrete C20,http://data.europa.eu/ehl/cpa21/235,https://w3id.org/brcomp#Footing,m3,66.20059987276478,construction
+Reinforcing Steel,http://data.europa.eu/ehl/cpa21/241,https://w3id.org/brot#Component,kg,81074.43811129945,construction
