@@ -19,12 +19,29 @@
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [black]: https://github.com/psf/black
 
+## About the Project
+
+This model aims to produce the estimated amount of the materials needed for building a bridge based on the input parameters given by the user:
+
+- Bridge *length* (m),
+- Bridge *Width* (m),
+- (Optionally) Bridge *Type* ("Reinforced Concrete", "Prestressed Concrete", "Composite", "Extradosed Prestressed Concrete", "Cantilever Prestressed Concrete").
+
+The estimation is based on the data on built bridges across France.
+
+Estimated amount of materials include:
+
+- Concrete (m³) for the drilled piles, foundations, walls and abutments, piers, deck, and blinding,
+- Structural Steel (kg) for drilled piles and steel deck,
+- Reinforcing Steel (kg) used for rebars (concrete reinforcement).
+
 ## Installation
 
-You can install _bridgeslca_ via [pip] from [PyPI]:
+You can install *bridgeslca* via [pip] from [PyPI]:
 
 ```console
-$ pip install bridgeslca
+
+$*pip install bridgeslca
 ```
 
 ## Contributing
@@ -35,21 +52,18 @@ To learn more, see the [Contributor Guide][Contributor Guide].
 ## License
 
 Distributed under the terms of the [MIT license][License],
-_bridgeslca_ is free and open source software.
+*bridgeslca* is free and open source software.
 
 ## Issues
 
 If you encounter any problems,
 please [file an issue][Issue Tracker] along with a detailed description.
 
-
 <!-- github-only -->
-
-[command-line reference]: https://BridgesLCA.readthedocs.io/en/latest/usage.html
+<!-- [command-line reference]: https://BridgesLCA.readthedocs.io/en/latest/usage.html -->
 [License]: https://github.com/tchevilliet/BridgesLCA/blob/main/LICENSE
 [Contributor Guide]: https://github.com/tchevilliet/BridgesLCA/blob/main/CONTRIBUTING.md
 [Issue Tracker]: https://github.com/tchevilliet/BridgesLCA/issues
-
 
 ## Building the Documentation
 
@@ -69,4 +83,3 @@ and [running the build command](https://www.sphinx-doc.org/en/master/man/sphinx-
 
 ```bash
 sphinx-build docs _build/html --builder=html --jobs=auto --write-all; open _build/html/index.html
-```
