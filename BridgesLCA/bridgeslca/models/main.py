@@ -11,6 +11,7 @@ import os
 from datetime import date
 from pydantic import BaseModel
 from typing import Optional, NamedTuple
+import seaborn as sns
 
 import bw2data as bd
 import bw2io as bi
@@ -33,7 +34,7 @@ D = cbm.Demand(
     width=6,
     length=100,
 #   bridges_type = 'Prestressed Concrete',
-    tolerance=0,
+    tolerance=0
 )
 m = cbm.BridgeModel(demand=D, run_config=cbm.RunConfig())
 m.get_model_data(data.df_bridge)
@@ -63,3 +64,56 @@ my_lca.score
 
 df_inventory = my_lca.to_dataframe(matrix_label="inventory")
 df_characterized_inventory = my_lca.to_dataframe(matrix_label="characterized_inventory")
+
+
+#%% get results and plot for several demand
+
+l_length = range(5,500,10)
+
+demands= [cbm.Demand(product_iri=cbm.IRI(ref="http://data.europa.eu/xsp/cn2024/911440000080"),
+                     properties=None,
+                     amount=2.0,
+                     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
+                     width=6,
+                     length=l,
+                     #   bridges_type = 'Prestressed Concrete',
+                     tolerance=0) for l in l_length]
+
+models = [cbm.BridgeModel(d, run_config=cbm.RunConfig()) for d in demands]
+for m in models :
+    m.get_model_data(data.df_bridge)
+results = [m.run(bridges_vocab) for m in models]
+
+# q_concrete = [r[r['material_IRI']=='http://data.europa.eu/ehl/cpa21/23611']['amount'].sum() for r in results]
+# g= sns.scatterplot(x=l_length,y=q_concrete)
+# g.figure.savefig("/home/thibault.chevilliet@enpc.fr/Bureau/conc_vs_length.pdf")
+# g.figure.clf()
+
+FUs = []
+for r in results :
+    tmp ={v : 0 for v in d_to_read.values()}
+    for row in r.index :
+        tmp[d_to_read[r.at[row,'material_IRI']]] += r.at[row,'amount']
+    FUs.append(tmp)
+
+scores = []
+for fu in FUs :
+    my_functional_unit, data_objs, _ = bd.prepare_lca_inputs(fu, method=chosen_meth)
+    my_lca = bc.LCA(demand=my_functional_unit, data_objs=data_objs)
+    my_lca.lci()
+    my_lca.lcia()
+    scores.append(my_lca.score)
+    
+g= sns.scatterplot(x=l_length,y=scores)
+g.figure.savefig("/home/thibault.chevilliet@enpc.fr/Bureau/lca_score_vs_length.pdf")
+g.figure.clf()
+
+
+# l_scores = []
+
+
+# #Export csv for Stefano
+# l_brid = [int((5-5)/10),int((25-5)/10),int((55-5)/10),int((105-5)/10),int((205-5)/10),int((425-5)/10)]
+# for l in l_brid :
+#     results[l].to_csv(f"/home/thibault.chevilliet@enpc.fr/Bureau/For Stefano/bridge{l*10+5}.csv")
+
