@@ -13,20 +13,13 @@ import bw2io as bi
 import bw2calc as bc
 import bw2analyzer as bwa
 #%%
-proj_name = "2024-09-20_new"
+proj_name = #name of a project
 
-# # Méthode en deux temps via fonction perso
-# eidb_path = '/home/thibault.chevilliet@enpc.fr/Documents/Bases de données/Ecoinvent/ecoinvent 3.9.1_cutoff_ecoSpold02/datasets/'
-# eidb_name = 'ei391_cutoff'
-# perso.import_bdd(proj_name, eidb_path, eidb_name)
-
-# Nouvelle méthode Chris Mutel avec import ecoinvent 
-# ET biosphere directement adaptée (à privilégier)
 bd.projects.set_current(proj_name)
 version = '3.10' #version ecoinvent
 model = 'cutoff' # modèle choisi (cut-off / apos / consequential / EN15804)
-username = 'pontsparistech77'
-mdp = 'pontsparistech77'
+username = #username
+mdp = #username
 try :
     bi.import_ecoinvent_release(version,model,username,mdp)
 except ValueError:
