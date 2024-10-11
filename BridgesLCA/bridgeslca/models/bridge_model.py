@@ -137,7 +137,7 @@ D = Demand(
     temporal_range=(date(2000, 1, 1), date(2010, 1, 1)),
     width=120,
     length=50,
-    tolerance=0.20,
+    tolerance=0.01,
 )
 m = SentierModel(demand=D, run_config=RunConfig())
 m.get_model_data(data.all_data, data.df_bridge_mod)
